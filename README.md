@@ -4,7 +4,7 @@
 
 ## Overview
 
-This repo contains a set of Terraform modules that deploy a ServiceNow Mid Server.
+This repo contains a set of Terraform modules that deploy a ServiceNow Mid Server. All steps are automated with the exception of MidSever validation and the creation of the MidServer account.
 
 ## Prerequisites
 
