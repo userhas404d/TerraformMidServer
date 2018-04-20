@@ -96,25 +96,25 @@ resource "aws_security_group" "this" {
   }
 }
 
-resource "aws_s3_bucket" "tftemplates" {
-   bucket = "terraform-templates-${random_id.this.hex}"
-   acl = "private"
-
-   tags {
-     Name        = "terraform-templates-${random_id.this.hex}"
-     Environment = "Dev"
-  }
-}
-
-resource "aws_s3_bucket" "tfstate" {
-   bucket = "terraform-state-files-${random_id.this.hex}"
-   acl = "private"
-
-   tags {
-     Name        = "terraform-state-files-${random_id.this.hex}"
-     Environment = "Dev"
-  }
-}
+// resource "aws_s3_bucket" "tftemplates" {
+//    bucket = "terraform-templates-${random_id.this.hex}"
+//    acl = "private"
+//
+//    tags {
+//      Name        = "terraform-templates-${random_id.this.hex}"
+//      Environment = "Dev"
+//   }
+// }
+//
+// resource "aws_s3_bucket" "tfstate" {
+//    bucket = "terraform-state-files-${random_id.this.hex}"
+//    acl = "private"
+//
+//    tags {
+//      Name        = "terraform-state-files-${random_id.this.hex}"
+//      Environment = "Dev"
+//   }
+// }
 
 resource "aws_instance" "this" {
   count = 1
