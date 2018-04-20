@@ -132,13 +132,6 @@ resource "aws_instance" "this" {
   provisioner "remote-exec" {
     inline = [
       "set -e",
-      "sudo yum -y install git",
-      "git clone -b ${var.reposync_ref} ${var.reposync_repo}",
-      "cd terrasnow",
-      "chmod +x ./terraform_host/install-deps.sh",
-      "./terraform_host/install-deps.sh",
-    #  "invoke post-creds --user-name='${var.sn_user_name}' --user-pwd='${var.sn_pwd}' --key-name='testkey' --host-user-name='${var.host_user}' --ssh-private-key='${join("", tls_private_key.this.*.private_key_pem)}'",
-      "cat /tmp/terraform_*.sh",
       "mkdir servicenow && cd servicenow",
       "wget ${var.midserver_installer}",
       "unzip *.zip && cd agent",
