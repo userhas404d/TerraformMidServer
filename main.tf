@@ -53,7 +53,7 @@ resource "random_id" "this" {
 resource "aws_iam_instance_profile" "this" {
   count = 1
 
-  name = "terraform-host-${random_id.this.hex}"
+  name = "linux-MidServer-${random_id.this.hex}"
   role = "${module.iam.host_role_name}"
 }
 
@@ -67,18 +67,18 @@ resource "tls_private_key" "this" {
 resource "aws_key_pair" "this" {
   count = 1
 
-  key_name   = "terraform-host-${random_id.this.hex}"
+  key_name   = "linux-MidServer-${random_id.this.hex}"
   public_key = "${tls_private_key.this.public_key_openssh}"
 }
 
 resource "aws_security_group" "this" {
   count = 1
 
-  name   = "terraform-host-${random_id.this.hex}"
+  name   = "linux-MidServer-${random_id.this.hex}"
   vpc_id = "${data.aws_vpc.this.id}"
 
   tags {
-    Name = "terraform-host-${random_id.this.hex}"
+    Name = "linux-MidServer-${random_id.this.hex}"
   }
 
   ingress {
@@ -126,7 +126,7 @@ resource "aws_instance" "this" {
   vpc_security_group_ids = ["${aws_security_group.this.id}"]
 
   tags {
-    Name = "terraform-host-${random_id.this.hex}"
+    Name = "linux-MidServer-${random_id.this.hex}"
   }
 
   provisioner "remote-exec" {
