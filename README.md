@@ -15,6 +15,7 @@ This repo contains a set of Terraform modules that deploy a ServiceNow Mid Serve
 ## Caveats
 
 - Complex passwords are not currently supported due to Character Entity Reference [limitations](https://docs.servicenow.com/bundle/jakarta-servicenow-platform/page/product/mid-server/task/t_SetupMIDServerRole.html) using the current `sed` replace method.
+- The expectation is that this is an ephemeral instance. The Mid Server service is not configured to start on system boot.
 
 ## How To Use This module
 
