@@ -18,7 +18,7 @@ This repo contains a set of Terraform modules that deploy a ServiceNow Mid Serve
 
 ## How To Use This module
 
-To use this module, modify the `variables.tf` file with your applicable input variables.
+To use this module, modify the `terraform.tfvars` file with your applicable input variables.
 
 In your Terraform working directory, run the following commands:
 
@@ -31,4 +31,4 @@ $ terraform apply
 ## ToDo
 
 - Create MidServer account programmatically
-- Account for Character Entity References in string replace/xml modifications 
+- Account for Character Entity References in string replace/xml modifications

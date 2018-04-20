@@ -1,0 +1,6 @@
+MidServerUrl = ""
+ServiceNowInstanceName = "AWSMidServer"
+MidServerUser = "AwsMidServerUser"
+MidServerUserPassword = ""
+sn_user_name = "asdf"
+sn_pwd = "asdf"
