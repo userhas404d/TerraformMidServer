@@ -1,7 +1,5 @@
 
-data "aws_partition" "current" {
-  count = 1
-}
+data "aws_partition" "current" {}
 
 module "iam" {
   source         = "./modules"
@@ -10,20 +8,15 @@ module "iam" {
 }
 
 data "http" "ip" {
-  count = 1
-
   # Get local ip for security group ingress
   url = "http://ipv4.icanhazip.com"
 }
 
 data "aws_vpc" "this" {
-  count = 1
   default = "true"
 }
 
 data "aws_ami" "this" {
-  count = 1
-
   most_recent = true
 
   filter {
@@ -40,8 +33,6 @@ data "aws_ami" "this" {
 }
 
 resource "random_id" "this" {
-  count = 1
-
   keepers = {
     # Generate a new id each time we change the instance_ip
     instance_ip = "${chomp(data.http.ip.body)}"
@@ -51,29 +42,21 @@ resource "random_id" "this" {
 }
 
 resource "aws_iam_instance_profile" "this" {
-  count = 1
-
   name = "linux-MidServer-${random_id.this.hex}"
   role = "${module.iam.host_role_name}"
 }
 
 resource "tls_private_key" "this" {
-  count = 1
-
   algorithm = "RSA"
   rsa_bits  = "4096"
 }
 
 resource "aws_key_pair" "this" {
-  count = 1
-
   key_name   = "linux-MidServer-${random_id.this.hex}"
   public_key = "${tls_private_key.this.public_key_openssh}"
 }
 
 resource "aws_security_group" "this" {
-  count = 1
-
   name   = "linux-MidServer-${random_id.this.hex}"
   vpc_id = "${data.aws_vpc.this.id}"
 
@@ -117,8 +100,6 @@ resource "aws_security_group" "this" {
 // }
 
 resource "aws_instance" "this" {
-  count = 1
-
   ami                    = "${data.aws_ami.this.id}"
   instance_type          = "t2.micro"
   iam_instance_profile   = "${aws_iam_instance_profile.this.name}"
